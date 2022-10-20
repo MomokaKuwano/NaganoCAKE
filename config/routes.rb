@@ -7,10 +7,11 @@ Rails.application.routes.draw do
     get 'customers/show'
     get 'customers/edit'
   end
+  
   namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
+    resources :genres
   end
+  
   namespace :admin do
     get 'homes/top'
   end
