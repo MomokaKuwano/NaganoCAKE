@@ -2,15 +2,11 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'orders/show'
   end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-
+  
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :items
+    resources :items, only: [:new, :index, :create, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
   end
 
   namespace :admin do

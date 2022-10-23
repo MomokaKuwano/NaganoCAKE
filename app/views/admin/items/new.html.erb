@@ -1,6 +1,6 @@
 <h3>商品新規登録</h3>
 
-<%= form_with model: @item, url: new_admin_item_path do |f| %>
+<%= form_with model: @item, url: admin_items_path do |f| %>
 
 <div class="field">
   <%= f.label :image, "商品画像" %>
@@ -9,23 +9,23 @@
 
 <div class="field">
   <%= f.label :name, "商品名" %>
-  <%= f.text_field :name, autofocus: true, autocomplete: "name"%>
+  <%= f.text_field :name, autofocus: true %>
 </div>
 
 <div class="field">
   <%= f.label :introduction, "商品説明" %>
-  <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction"%>
+  <%= f.text_area :introduction %>
 </div>
 
 <div class="field">
-   <%= f.label :genres, "ジャンル" %>
+   <%= f.label :genre_id, "ジャンル" %>
    <%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "--選択してください--") %>
 
  </div>
 
 <div class="field">
   <%= f.label :price, "税抜価格" %>
-  <%= f.text_field :price, autofocus: true, autocomplete: "price"%>
+  <%= f.text_field :price %>
 </div>
 
 <div class="field">
