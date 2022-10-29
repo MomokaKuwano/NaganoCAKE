@@ -20,9 +20,10 @@ class Public::RegistrationsController < Devise::RegistrationsController
   end
   
 
-  # GET /resource/sign_up
-  #def new
-  #end
+  #GET /resource/sign_up
+ # def new
+    
+ # end
 
   # POST /resource
   #def create
