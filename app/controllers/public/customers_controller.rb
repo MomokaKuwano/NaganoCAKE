@@ -14,7 +14,7 @@ class Public::CustomersController < ApplicationController
     redirect_to customer_path(customer.id)
   end
 
-    def unsubscribe
+  def unsubscribe
     @customer = Customer.find(params[:id])
   end
 
