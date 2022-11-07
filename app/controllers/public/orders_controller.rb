@@ -5,11 +5,17 @@ class Public::OrdersController < ApplicationController
   end
   
   def create
-    
+    @order = Order.new(order_params)
+    @order.save
+    redirect_to orders_information_path
   end
 
   def information
-  end
+    @order = Order.new(order_params)
+    @order.postal_code = current_customer.postal_code
+    @order.address = current_customer.address
+    @order.name = current_customer.first_name + current_customer.last_name  
+    end
 
   def completed
   end
