@@ -5,23 +5,23 @@ class Public::OrdersController < ApplicationController
   end
 
   def information
-    @cart_items = Item.all
     @order = Order.new(order_params)
-    if params[:select_address][:option] == 0
+    @cart_items = current_customer.cart_items.all
+    @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
+    @order.postage = 800
+    if params[:order][:select_address] == "0"
        @order.postal_code = current_customer.postal_code
        @order.address = current_customer.address
        @order.name = current_customer.first_name + current_customer.last_name
        render 'information'
-
-    elsif params[:select_address][:option] == 1
+    elsif params[:order][:select_address] == "1"
        @address = Address.find(params[:order][:address_id])
        @order.postal_code = @address.postal_code
        @order.address = @address.address
        @order.name = @address.name
        render 'information'
-
     else
-      params[:select_address][:option] == 2
+      params[:order][:select_address] == "2"
        render 'information'
     end
   end
@@ -41,6 +41,6 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :postage, :billing_amount, :payment_method, :address_id)
+    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :postage, :billing_amount, :payment_method )
   end
 end
