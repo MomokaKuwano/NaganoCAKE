@@ -17,12 +17,13 @@ Rails.application.routes.draw do
     resources :items, only: [:new, :index, :create, :show, :edit, :update]
     resources :cart_items, only: [:index, :update, :destroy, :create]
     post 'orders/information' => 'orders#information'
+    get 'orders/completed' => 'orders#completed'
     resources :orders, only: [:new, :create, :index, :show]
     resources :items, only: [:index, :show]
     delete '/cart_items/:id/destroy_all' =>'cart_items#destroy_all', as: 'destroy_all'
     get '/customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
-    get 'orders/completed'
+
   end
 
   namespace :admin do

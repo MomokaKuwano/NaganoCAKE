@@ -9,10 +9,11 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
     @order.postage = 800
+    @order.billing_amount = @order.postage+@total
     if params[:order][:select_address] == "0"
        @order.postal_code = current_customer.postal_code
        @order.address = current_customer.address
-       @order.name = current_customer.first_name + current_customer.last_name
+       @order.name = current_customer.last_name + current_customer.first_name
        render 'information'
     elsif params[:order][:select_address] == "1"
        @address = Address.find(params[:order][:address_id])
@@ -21,7 +22,7 @@ class Public::OrdersController < ApplicationController
        @order.name = @address.name
        render 'information'
     else
-      params[:order][:select_address] == "2"
+       params[:order][:select_address] == "2"
        render 'information'
     end
   end
@@ -30,6 +31,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.all
   end
 
   def create
