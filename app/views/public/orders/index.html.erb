@@ -15,7 +15,7 @@
         <% @orders.each do |order|%>
           <tr>
             <td>
-              <%= order.created_at %>
+              <%= order.created_at.strftime('%Y/%m/%d') %>
             </td>
             <td>
               〒<%= order.postal_code %><br>
@@ -23,9 +23,10 @@
               <%= order.name %>
             </td>
             <td>
+
             </td>
             <td>
-              <%= order.billing_amount.to_s(:delimited) %>
+              <%= order.billing_amount.to_s(:delimited) %>円
             </td>
             <td>
             </td>

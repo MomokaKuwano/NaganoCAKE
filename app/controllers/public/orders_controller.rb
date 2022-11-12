@@ -26,20 +26,20 @@ class Public::OrdersController < ApplicationController
        render 'information'
     end
   end
-  
+
   def create
-    @order = current_user.orders.new(order_params)
+    @order = current_customer.orders.new(order_params)
     @order.save
-    @cart_items = current_user.cart_items.all
+    @cart_items = current_customer.cart_items.all
     @cart_items.each do |cart_item|
-      @order_details = @order.order_details.new
-      @order_details.item_id = cart_item.item.id
-      @order_details.name = cart_item.item.name
-      @order_details.price = cart_item.item.price
-      @order_details.amount = cart_item.amount
-      @order_details.save
-　　current_user.cart_items.destroy_all
-    render orders_completed_path
+      order_details = @order.order_details.new
+      order_details.item_id = cart_item.item.id
+      order_details.purchase_price = cart_item.item.add_tax_price
+      order_details.amount = cart_item.amount
+      order_details.save
+    current_customer.cart_items.destroy_all
+    redirect_to orders_completed_path
+    end
   end
 
   def completed
@@ -54,7 +54,7 @@ class Public::OrdersController < ApplicationController
 
   private
 
-  def order_params
-    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :postage, :billing_amount, :payment_method )
-  end
-end
+    def order_params
+      params.require(:order).permit(:customer_id, :postal_code, :address, :name, :postage, :billing_amount, :payment_method )
+    end
+ end
