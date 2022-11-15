@@ -7,3 +7,14 @@
 
 <h2>新着商品</h2>
 
+<% @items.each do |item| %>
+<div>
+<%= link_to item_path(item.id) do %>
+<%= image_tag item.get_image, size: "300x200" %>
+<% end %>
+<%= item.name %>
+¥<%= item.price.to_s(:delimited) %>
+</div>
+<% end %>
+
+<%= link_to "全ての商品を見る>", items_path %>
