@@ -1,44 +1,56 @@
-<h3>商品一覧</h3>
-  <%= link_to "新規", new_admin_item_path %>
-
-  <table>
-    <thead>
-      <tr>
-        <th>商品ID</th>
-        <th>商品名</th>
-        <th>税抜価格</th>
-        <th>ジャンル</th>
-        <th>ステータス</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @items.each do |item| %>
-      <tr>
-        <td>
-          <%= item.id %>
-        </td>
-        <td>
-          <%=link_to admin_item_path(item.id) do %>
-          <%= item.name %>
-          <% end %>
-        </td>
-        <td>
-          <%= item.price.to_s(:delimited) %>
-        </td>
-        <td>
-          <%= item.genre.name %>
-        </td>
-        <td>
-          <% if item.is_active %>
-            <p>販売中</p>
-          <% else %>
-            <p>販売停止中</p>
-          <% end %>
-        </td>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-10">
+      <h5 class="mt-5 mb-3">
+        <span class="px-3">
+          商品一覧
+        </span>
+        <%=link_to new_admin_item_path do %>
+        <i class="fa fa-plus-circle offset-10 text-dark"></i>
         <% end %>
-      </tr>
-    </tbody>
-  </table>
-<%= paginate @items %>
+      </h5>
 
+
+      <table class="table">
+        <thead class="table-light">
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @items.each do |item| %>
+          <tr>
+            <td>
+              <%= item.id %>
+            </td>
+            <td>
+              <%=link_to admin_item_path(item.id) do %>
+              <%= item.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= item.price.to_s(:delimited) %>
+            </td>
+            <td>
+              <%= item.genre.name %>
+            </td>
+            <td>
+              <% if item.is_active %>
+                <strong><p class="text-success">販売中</p></strong>
+              <% else %>
+                <strong><p class="text-black-50">販売停止中</p></strong>
+              <% end %>
+            </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+          <%= paginate @items %>
+    </div>
+  </div>
+</div>

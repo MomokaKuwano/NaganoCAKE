@@ -67,3 +67,5 @@ gem "enum_help"
 
 gem 'pry-byebug', group: :development
 
+
+gem "font-awesome-rails"
