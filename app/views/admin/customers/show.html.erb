@@ -1,29 +1,92 @@
-<h3>
-  <%= @customer.last_name%>
-  <%= @customer.first_name %>さんの会員詳細
-</h3>
+<div class="container">
+  <div class="row mx-auto col-10">
+      <h5 class="my-5">
+        <span class="px-3">
+          <%= @customer.last_name%>
+          <%= @customer.first_name %>さんの会員詳細
+        </span>
+      </h5>
+  </div>
 
-  <p>会員ID</p>
-    <%= @customer.id %>
-  <p>氏名</p>
-    <%= @customer.last_name %>
-    <%= @customer.first_name %>
-  <p>フリガナ</p>
-    <%= @customer.last_name_kana %>
-    <%= @customer.first_name_kana %>
-  <p>郵便番号</p>
-    <%= @customer.postal_code %>
-  <p>住所</p>
-    <%= @customer.address %>
-  <p>電話番号</p>
-    <%= @customer.telephone_number %>
-  <p>メールアドレス</p>
-    <%= @customer.email %>
-  <p>会員ステータス</p>
-    <% if @customer.is_deleted %>
-    <p>退会</p>
-    <% else %>
-    <p>有効</p>
-    <% end %>
-   <%= link_to "編集する", edit_admin_customer_path %>
+  <div class="row mx-auto">
+      <div class="col-2 offset-1">
+        会員ID
+      </div>
+      <div class="col-5">
+        <%= @customer.id %>
+      </div>
+  </div>
 
+  <div class="row mx-auto">
+    <div class="col-2 my-3 offset-1">
+      氏名
+    </div>
+    <div class="col-5 my-3">
+      <%= @customer.last_name %>
+      <%= @customer.first_name %>
+    </div>
+  </div>
+
+  <div class="row mx-auto">
+    <div class="col-2 offset-1">
+      フリガナ
+    </div>
+    <div class="col-5">
+      <%= @customer.last_name_kana %>
+      <%= @customer.first_name_kana %>
+    </div>
+  </div>
+
+  <div class="row mx-auto">
+    <div class="col-2 my-3 offset-1">
+      郵便番号
+    </div>
+    <div class="col-5 my-3">
+      <%= @customer.postal_code %>
+    </div>
+  </div>
+
+  <div class="row mx-auto">
+    <div class="col-2 offset-1">
+      住所
+    </div>
+    <div class="col-5">
+      <%= @customer.address %>
+    </div>
+  </div>
+
+  <div class="row mx-auto">
+    <div class="col-2 my-3 offset-1">
+      電話番号
+    </div>
+    <div class="col-5 my-3">
+      <%= @customer.telephone_number %>
+    </div>
+  </div>
+
+  <div class="row mx-auto">
+    <div class="col-2 offset-1">
+      メールアドレス
+    </div>
+    <div class="col-5">
+      <%= @customer.email %>
+    </div>
+  </div>
+
+  <div class="row mx-auto">
+    <div class="col-2 my-3 offset-1">
+      会員ステータス
+    </div>
+    <div class="col-5 my-3">
+      <% if @customer.is_deleted %>
+       <strong><p class="text-black-50">退会</p></strong>
+      <% else %>
+      <strong><p class="text-success">有効</p></strong>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-6 mx-auto">
+   <%= link_to "編集する", edit_admin_customer_path, class: "btn btn-success" %>
+   <%= link_to "注文履歴一覧を見る", admin_order_path(@customer.id), class: "btn btn-primary" %>
+   </div>
+</div>

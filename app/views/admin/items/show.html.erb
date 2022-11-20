@@ -1,19 +1,66 @@
-<h3>商品詳細</h3>
+<div class="container">
+  <div class="row mx-auto col-10">
+      <h5 class="my-5">
+        <span class="px-3">
+          商品詳細
+        </span>
+      </h5>
+    </div>
+  <div class="row mx-auto">
+    <div class="col-5">
+      <%= image_tag @item.get_image, size: "350x250" %>
+       </div>
+          <div class="col-6">
+            <div class="row mb-2">
+              <div class="col-3">
+                商品名
+              </div>
+              <div class="col-8">
+               <%= @item.name %>
+              </div>
+          </div>
+            <div class="row mt-2 mb-2">
+              <div class="col-3">
+                商品説明
+              </div>
+              <div class="col-8">
+               <%= @item.introduction %>
+               </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-3">
+                ジャンル
+              </div>
+              <div class="col-8">
+               <%= @item.genre.name %>
+               </div>
+            </div>
 
-  <%= image_tag @item.get_image %>
-  <p>商品名</p>
-    <%= @item.name %>
-  <p>商品説明</p>
-    <%= @item.introduction %>
-  <p>ジャンル</p>
-    <%= @item.genre.name %>
-  <p>税抜価格</br>(税込価格)</p>
-    <%= @item.price.to_s(:delimited)%>(<%= @item.add_tax_price.to_s(:delimited) %>)
-  <p>ステータス</p>
-    <% if @item.is_active %>
-      <p>販売中</p>
-    <% else %>
-      <p>販売停止中</p>
-    <% end %>
+            <div class="row mb-2">
+              <div class="col-3">
+                税抜価格</br>(税込価格)
+              </div>
+              <div class="col-8">
+               <%= @item.add_tax_price.to_s(:delimited)%>(<%= @item.price.to_s(:delimited) %>)円
+               </div>
+            </div>
 
-  <%= link_to "編集する", edit_admin_item_path(@item.id) %>
+            <div class="row mb-2">
+              <div class="col-3">
+                ステータス
+              </div>
+              <div class="col-8">
+              <% if @item.is_active %>
+                <strong class="text-success">販売中</strong>
+              <% else %>
+                <strong class="text-black-50">販売停止中</strong>
+              <% end %>
+              </div>
+          </div>
+        </div>
+
+      <div class="actions mx-auto col-3 mt-5">
+      <%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-success" %>
+      </div>
+  </div>
+</div>
