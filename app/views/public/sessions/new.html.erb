@@ -1,23 +1,51 @@
-<h2>ログイン</h2>
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-10">
+      <h5 class="mt-5 mb-2">
+        <span class="px-3">
+          ログイン
+        </span>
+      </h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto col-10">
+      <h6 class="mt-5 mb-5">
+        <span class="px-3">
+          会員の方はこちらからログイン
+        </span>
+      </h6>
+    </div>
+  </div>
+  <div class="offset-2">
+    <%= form_with model: @customer, url: new_customer_session_path do |f| %>
+      <div class="row mx-auto mb-3">
+        <%= f.label :email, "メールアドレス",class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-6">
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        </div>
+      </div>
 
-<h3>会員の方はこちらからログイン</h3>
+      <div class="row mx-auto mb-3">
+        <%= f.label :password, "パスワード",class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-6">
+        <%= f.password_field :password, class: "form-control" %>
+        </div>
+      </div>
 
-<%= form_with model: @customer, url: new_customer_session_path do |f| %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="actions mx-auto col-6 mt-4">
+        <%= f.submit "ログイン", class: "btn-sm btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+    <div class="row">
+      <div class="mx-auto col-10">
+        <h6 class="mt-5 mb-2">
+          <span class="px-3">
+            会員登録がお済みでない方
+          </span>
+        </h6>
+        <%= link_to "こちら", new_customer_registration_path %> から新規登録を行ってください。
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-
-<h3>会員登録がお済みでない方</h3>
-
-<p><%= link_to "こちら", new_customer_registration_path %> から新規登録を行ってください。</p>

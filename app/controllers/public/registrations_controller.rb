@@ -5,24 +5,24 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   def after_sign_in_path_for(resource)
-    homes_about_path
+    root_path
   end
-  
-    
+
+
   def after_sign_out_path_for(resource)
     homes_about_path
   end
-  
+
   protected
 
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email,:last_name,:first_name,:last_name_kana,:first_name_kana,:postal_code,:address,:telephone_number])
   end
-  
+
 
   #GET /resource/sign_up
  # def new
-    
+
  # end
 
   # POST /resource
@@ -33,7 +33,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def edit
   #   super
   # end
-  
+
   # PUT /resource
   # def update
   #   super
