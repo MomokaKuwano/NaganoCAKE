@@ -1,52 +1,78 @@
 <div class="container">
-  <div class="row">
-    <div class="mx-auto col-10">
-      <h5 class="my-5">
-        <span class="px-3">
-          商品新規登録
-         </span>
-      </h5>
-    </div>
-    <div class="row mx-auto col-7">
-      <%= form_with model: @item, url: admin_items_path do |f| %>
+    <div class="row">
 
-      <div class="field mb-2">
-        <%= f.label :image, "商品画像" %>
-        <%= f.file_field :image, accept: "image/*" %>
+      <div class="col-10 offset-2">
+        <h5 class="my-5">
+          <span1 class="px-3">
+            商品新規登録
+           </span1>
+        </h5>
       </div>
 
-      <div class="field mb-2">
-        <%= f.label :name, "商品名" %>
-        <%= f.text_field :name, autofocus: true %>
-      </div>
+      <div class="row mx-auto">
+        <%= form_with model: @item, url: admin_items_path do |f| %>
+          <div class="row mb-3">
+            <div class="col-4">
+              <%= f.label :image, "商品画像" ,class: "col-form-label" %>
+            </div>
+            <div class="col-8">
+              <%= f.file_field :image, accept: "image/*" %>
+            </div>
+          </div>
 
-      <div class="field mb-2">
-        <%= f.label :introduction, "商品説明" %>
-        <%= f.text_area :introduction %>
-      </div>
+          <div class="row mb-3">
+            <div class="col-4">
+            <%= f.label :name, "商品名",class: "col-form-label" %>
+            </div>
+            <div class="col-8">
+            <%= f.text_field :name, autofocus: true, class: "form-control" %>
+            </div>
+          </div>
 
-      <div class="field mb-2">
-         <%= f.label :genre_id, "ジャンル" %>
-         <%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "--選択してください--") %>
+           <div class="row mb-3">
+              <div class="col-4">
+              <%= f.label :introduction, "商品説明",class: "col-form-label" %>
+              </div>
+              <div class="col-sm-8">
+              <%= f.text_area :introduction, class: "form-control", row: "15" %>
+              </div>
+            </div>
 
-       </div>
+            <div class="row mb-2">
+              <div class="col-4">
+               <%= f.label :genre_id, "ジャンル", class: "col-form-label" %>
+               </div>
+               <div class="col-8">
+               <%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "--選択してください--")  %>
+               </div>
+           </div>
 
-      <div class="field mb-2">
-        <%= f.label :price, "税抜価格" %>
-        <%= f.text_field :price %>
-      </div>
+            <div class="row mb-2">
+              <div class="col-4">
+              <%= f.label :price, "税抜価格", class: "col-form-label" %>
+              </div>
+               <div class="col-8">
+              <%= f.text_field :price, class: "form-control" %>
+              </div>
+            </div>
 
-      <div class="field mb-2">
-         <%= f.label :is_active, "販売ステータス" %>
-         <%= f.radio_button :is_active, :true %>
-         <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block;"} %>
-         <%= f.radio_button :is_active, :false %>
-         <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %>
+            <div class="row mb-3">
+              <div class="col-4">
+               <%= f.label :is_active, "販売ステータス", class: "col-form-label" %>
+               </div>
+               <div class="col-8 col-form-label">
+               <%= f.radio_button :is_active, :true %>
+               <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block;"} %>
+               <%= f.radio_button :is_active, :false %>
+               <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %>
+               </div>
+            </div>
+
+            <div class="actions mx-auto col-3 mt-4">
+             <%= f.submit '新規登録', class: "btn btn-success" %>
+             <% end %>
+            </div>
+
+          </div>
       </div>
-      <div class="actions mx-auto col-3 mt-4">
-       <%= f.submit '新規登録', class: "btn btn-success" %>
-      </div>
-      <% end %>
-      </div>
-    </div>
   </div>

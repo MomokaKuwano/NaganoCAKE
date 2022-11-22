@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto col-10">
-      <h5 class="mt-5 mb-3">
-        <span class="px-3">
-          商品一覧
-        </span>
-        <%=link_to new_admin_item_path do %>
-        <i class="fa fa-plus-circle offset-10 text-dark"></i>
-        <% end %>
-      </h5>
+        <h5 class="mt-5 mb-3">
+          <span1 class="px-3">
+            商品一覧
+          </span1>
+          <%=link_to new_admin_item_path do %>
+          <i class="fa fa-plus-circle offset-10 text-dark"></i>
+          <% end %>
+        </h5>
 
       <table class="table">
         <thead class="table-light">
@@ -49,7 +49,17 @@
           </tr>
         </tbody>
       </table>
-          <%= paginate @items %>
+
+        <div class="row">
+          <div class="mx-auto">
+            <div class="pagination justify-content-around">
+              <%= paginate @items %>
+            </div>
+          </div>
+       </div>
+
     </div>
   </div>
+
+
 </div>

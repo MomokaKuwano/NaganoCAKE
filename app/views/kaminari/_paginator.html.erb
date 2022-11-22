@@ -1,15 +1,27 @@
 <%= paginator.render do -%>
   <ul class="pagination">
+    <il class="mx-2">
     <%= first_page_tag unless current_page.first? %>
+    </il>
+    <il class="mx-2">
     <%= prev_page_tag unless current_page.first? %>
+    </il>
+
     <% each_page do |page| -%>
       <% if page.left_outer? || page.right_outer? || page.inside_window? -%>
-        <%= page_tag page %>
+        <il class="mx-2">
+          <%= page_tag page %>
+        </il>
       <% elsif !page.was_truncated? -%>
         <%= gap_tag %>
       <% end -%>
     <% end -%>
+
+    <il class="mx-2">
     <%= next_page_tag unless current_page.last? %>
+    </il>
+    <il class="mx-2">
     <%= last_page_tag unless current_page.last? %>
+    </il>
   </ul>
 <% end -%>
