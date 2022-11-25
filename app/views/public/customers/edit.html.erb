@@ -1,43 +1,88 @@
-<h3>会員情報編集</h3>
+<div class="container">
 
-<%= form_with model: @customer, url: customer_path(@customer.id), method: :patch do |f| %>
-
-　<div class="field">
-　  <p>名前</p>
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+  <div class="row">
+    <div class="mx-auto col-10">
+      <h5 class="mt-5 mb-5">
+        <span1 class="px-3">
+          会員情報編集
+        </span1>
+      </h5>
+    </div>
   </div>
 
-  <div class="field">
-    <p>フリガナ</p>
-    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
-    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
-  </div>
+    <%= form_with model: @customer, url: customer_path(@customer.id), method: :patch do |f| %>
 
-  <div class="field">
-    <%= f.label :postal_code, "郵便番号" %><br />
-    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
-  </div>
+    <div class="row col-11 my-2">
+      <div class="col-2 col-form-label">
+        名前
+      </div>
+      <div class="col-sm-3">
+        <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.text_field :first_name, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :address, "住所" %><br />
-    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
-  </div>
+    <div class="row col-11 my-2">
+      <div class="col-2 col-form-label">
+        フリガナ
+      </div>
+      <div class="col-sm-3">
+        <%= f.text_field :last_name_kana, autofocus: true, class: "form-control" %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.text_field :first_name_kana, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :telephone_number, "電話番号" %><br />
-    <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %>
-  </div>
+    <div class="row col-11 mb-2">
+      <div class="col-2">
+        <%= f.label :postal_code, "郵便番号", class: "col-form-label" %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.text_field :postal_code, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
 
-    <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="row col-11 mb-2">
+      <div class="col-2">
+        <%= f.label :address, "住所", class: "col-form-label" %>
+      </div>
+      <div class="col-sm-6">
+        <%= f.text_field :address, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "編集内容を保存" %>
-  </div>
+    <div class="row col-11 mb-2">
+      <div class="col-2">
+        <%= f.label :telephone_number, "電話番号", class: "col-form-label" %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.text_field :telephone_number, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
 
-  <%= link_to "退会する", unsubscribe_path %>
+    <div class="row col-11 mb-2">
+      <div class="col-2">
+        <%= f.label :email, "メールアドレス", class: "col-form-label" %>
+      </div>
+      <div class="col-sm-3">
+        <%= f.text_field :email, autofocus: true, class: "form-control" %>
+      </div>
+    </div>
 
-<% end %>
+    <div class="row justify-content-evenly">
+
+      <div class="col-2 mt-5 offset-2">
+          <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+          <% end %>
+      </div>
+      <div class="col-2 mt-5">
+        <%= link_to "退会する", unsubscribe_path, class: "btn btn-danger" %>
+      </div>
+
+    </div>
+
+
+</div>
