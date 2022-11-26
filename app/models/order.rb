@@ -4,7 +4,7 @@ class Order < ApplicationRecord
 
   enum payment_method: { credit_card: 0, transfer: 1 }
 
-  def postal_code
-    1234567.to_s.insert(3, "-")
+  def postal_code_num
+    self.postal_code.to_s.insert(3, "-")
   end
 end

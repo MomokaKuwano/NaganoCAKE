@@ -1,4 +1,15 @@
-<h3>注文履歴詳細</h3>
+<div class="container">
+
+  <div class="row">
+    <div class="mx-auto col-10">
+      <h5 class="mt-5 mb-5">
+        <span1 class="px-3">
+          注文履歴詳細
+        </span1>
+      </h5>
+    </div>
+  </div>
+  
   <h4>注文情報</h4>
     <div>
       <p>注文日</p>
@@ -57,3 +68,5 @@
       <p>ご請求額</p>
       <%= @order.billing_amount.to_s(:delimited) %>
     </div>
+    
+</div>
