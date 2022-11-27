@@ -1,76 +1,71 @@
 <div class="container">
-    <div class="row mx-auto col-10">
-      <h5 class="mt-5 mb-3">
-        <span1 class="px-3">
-          注文情報入力
-        </span1>
-      </h5>
+  <div class="row mx-auto col-10">
+    <h5 class="mt-5 mb-3">
+      <span1 class="px-3">
+        注文情報入力
+      </span1>
+    </h5>
+  </div>
+
+  <div class="mb-2">
+    <strong>支払い方法</strong>
+  </div>
+    <%= form_with model: @order, url:  orders_information_path do |f|%>
+    <div class="mb-3">
+      <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+      <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+    <div>
+      <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+      <%= f.label :payment_method, Order.payment_methods_i18n[:transfer]%>
+    </div>
     </div>
 
-    <div class="mb-2">
-      <strong>支払い方法</strong>
-    </div>
-    <div class="mb-3">
-      <%= form_with model: @order, url:  orders_information_path do |f|%>
-      <div>
-        <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-        <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
-      </div>
-      <div>
-        <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-        <%= f.label :payment_method, Order.payment_methods_i18n[:transfer]%>
-      </div>
-    </div>
+  <div class="mb-2">
+    <strong>お届け先</strong>
+  </div>
 
-    <div class="mb-2">
-      <strong>お届け先</strong>
-    </div>
-    <div class="mb-3">
-      <%= f.radio_button :select_address, 0 %>
-      <%= f.label :select_address, "ご自身の住所" %><br>
-    　〒<%= @customer.postal_code %>
-    　<%= @customer.address %><br>
-    　<%= @customer.last_name%>
-    　<%= @customer.first_name%>
-    </div>
-    <div class="mb-3">
+    <%= f.radio_button :select_address, 0 %>
+    <%= f.label :select_address, "ご自身の住所" %><br>
+  　〒<%= @customer.postal_code %>
+  　<%= @customer.address %><br>
+  　<%= @customer.last_name%>
+  　<%= @customer.first_name%>
+
+  <div class="my-3">
       <%= f.radio_button :select_address, 1 %>
       <%= f.label :select_address, "登録済住所から選択" %>
-      <div>
-      <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
-      </div>
-    </div>
     <div>
-      <%= f.radio_button :select_address, 2 %>
-      <%= f.label :select_address, "新しいお届け先" %>
-
-        <div class="row mx-auto mb-2">
-          <%= f.label :postal_code, "郵便番号(ハイフンなし)",class: "col-sm-3 col-form-label" %><br />
-          <div class="col-sm-2">
-          <%= f.text_field :postal_code, autofocus: true, class: "form-control" %>
-          </div>
-        </div>
-
-        <div class="row mx-auto mb-2">
-          <%= f.label :address, "住所",class: "col-sm-3 col-form-label"  %>
-          <div class="col-sm-4">
-          <%= f.text_field :address, autofocus: true, class: "form-control"  %>
-          </div>
-        </div>
-
-        <div class="row mx-auto mb-2">
-          <%= f.label :name, "宛名", class: "col-sm-3 col-form-label" %>
-          <div class="col-sm-2">
-          <%= f.text_field :name, autofocus: true, class: "form-control" %>
-          </div>
-        </div>
+      <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
     </div>
+  </div>
 
-    <div class="row">
-      <div class="offset-2 mt-4">
-        <%= f.submit '確認画面へ進む', class: "btn btn-primary" %>
-        <% end %>
+    <%= f.radio_button :select_address, 2 %>
+    <%= f.label :select_address, "新しいお届け先" %>
+      <div class="row mx-auto mb-2">
+        <%= f.label :postal_code, "郵便番号(ハイフンなし)",class: "col-sm-3 col-form-label" %><br />
+        <div class="col-sm-2">
+        <%= f.text_field :postal_code, autofocus: true, class: "form-control" %>
+        </div>
       </div>
+      <div class="row mx-auto mb-2">
+        <%= f.label :address, "住所",class: "col-sm-3 col-form-label"  %>
+        <div class="col-sm-4">
+        <%= f.text_field :address, autofocus: true, class: "form-control"  %>
+        </div>
+      </div>
+      <div class="row mx-auto mb-2">
+        <%= f.label :name, "宛名", class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-2">
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
+        </div>
+      </div>
+
+
+  <div class="row">
+    <div class="mx-auto mt-4">
+      <%= f.submit '確認画面へ進む', class: "btn btn-primary" %>
+      <% end %>
     </div>
+  </div>
 
 </div>
