@@ -1,25 +1,24 @@
 class Public::CustomersController < ApplicationController
 
   def show
-    @customer = current_customer.id
+    @customer = current_customer
   end
 
   def edit
-    @customer = current_customer.id
+    @customer = current_customer
   end
 
   def update
-    customer = current_customer.id
+    customer = current_customer
     customer.update(customer_params)
-    redirect_to mypage_path(customer.id)
+    redirect_to mypage_path
   end
 
   def unsubscribe
-    @customer = Customer.find(params[:id])
   end
 
   def withdraw
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
     @customer.update(is_deleted: true)
     reset_session
     redirect_to root_path
